@@ -1,0 +1,17 @@
+ubuntu下安装网易云音乐客户端
+来源：http://tieba.baidu.com/p/3550138680?lp=5028&mo_device=1
+
+
+1.访问https://github.com/iamxz/NetEase-MusicBox，下载NetEase-MusicBox项目
+2.安装setuptools模块，具体在console中输入如下命令：
+wget http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz
+tar zxvf setuptools-0.6c11.tar.gz
+cd setuptools-0.6c11
+python setup.py build
+python setup.py install
+3.将下载的NetEase-MusicBox的zip包解压，进入解压后有setup.py的目录中，执行命令：
+python setup.py build
+python setup.py install(有可能需要加sudo)
+4.安装的时候可能有缺少的依赖包，可能需要输入sudo apt-get install -f,步骤3执行结束后安装mpg123:
+sudo apt-get install mpg123
+5.在console中输入：musicbox，就可以启动网易云音乐客户端了，这个是网上人用python实现的一个调用api接口完成的脚本程序，是纯命令行的，进入如下显示界面就是成功了。
