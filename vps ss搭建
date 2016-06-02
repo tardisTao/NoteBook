@@ -1,0 +1,43 @@
+ss
+https://prinzeugen.net/build-shadowsocks-sharing-site-with-ss-panel/
+http://www.dou-bi.com/ss-jc15/
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'admin' WITH GRANT OPTION; 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'admin' WITH GRANT OPTION;
+
+FLUSH   PRIVILEGES;
+grant all privileges on *shadowsocks* to 'root'@'127.0.0.1' identified by 'admin';
+
+iptables -I INPUT -p tcp -m tcp --dport 1025 -j ACCEPT
+/sbin/iptables -I INPUT -p tcp --dport 1025 -j ACCEPT
+
+iptables -I INPUT -p tcp -m tcp --dport 1025: -j ACCEPT
+
+--限制同一个端口号连接数量
+iptables -A INPUT -p tcp --syn --dport ${SHADOWSOCKS_PORT} -m connlimit --connlimit-above 32 -j REJECT --reject-with tcp-reset
+iptables -A INPUT -p tcp --dport 1000:2000 -m connlimit --connlimit-above 2 -j REJECT 
+--保存
+/etc/rc.d/init.d/iptables save
+--重启防火墙
+/etc/init.d/iptables restart
+--防火墙状态
+/etc/init.d/iptables status
+
+
+重置流量
+php xcat resetTraffic
+
+iwESBV
+
+
+//删除验证码
+修改./app/Controllers/AuthController.php 
+103 行 if ($c != null) {
+171 行 // $user->ref_by = $c->user_id;
+176 行 // $c->delete();
+修改./resources/views/default/auth/register.tpl 
+42<!-- <div class="form-group has-feedback">
+43<input type="text" id="code" value="{$code}" class="form-control" placeholder="邀请码"/>
+44<span class="glyphicon glyphicon-send form-control-feedback"></span>
+45</div>
+46-->
