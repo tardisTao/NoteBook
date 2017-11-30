@@ -3,3 +3,5 @@ git ceshi wenjian
 开始购物：
 键盘
 鼠标
+耳机
+音响
